@@ -1,0 +1,16 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation
+                           ="http://www.liquibase.org/xml/ns/dbchangelog
+                           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="change_conversation_partner_1_And_conversation_partner_2_on_UUID" author="DanilSh">
+        <preConditions>
+            <tableExists tableName="dialogs"/>
+            <columnExists tableName="dialogs" columnName="conversation_partner_1"/>
+            <columnExists tableName="dialogs" columnName="conversation_partner_2"/>
+        </preConditions>
+        <comment>Change data types of conversation_partner_1 and conversation_partner_2 to LocalDateTime</comment>
+        <modifyDataType tableName="dialogs" columnName="conversation_partner_1" newDataType="UUID"/>
+        <modifyDataType tableName="dialogs" columnName="conversation_partner_2" newDataType="UUID"/>
+    </changeSet>
+</databaseChangeLog>

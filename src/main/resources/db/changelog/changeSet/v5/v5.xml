@@ -1,0 +1,11 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation
+                           ="http://www.liquibase.org/xml/ns/dbchangelog
+                           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <include file="rename-amount-Unread-Message-2-unread-count-IN-dialogs.xml" relativeToChangelogFile="true" />
+    <include file="rename-content-2-message-text-IN-MESSAGE.xml" relativeToChangelogFile="true" />
+    <include file="rename-unread-count-2unreadCount.xml" relativeToChangelogFile="true" />
+    <include file="rename-unreadcount-2-unread-count.xml" relativeToChangelogFile="true" />
+    <include file="rename-sent-time-2-time.xml" relativeToChangelogFile="true" />
+</databaseChangeLog>

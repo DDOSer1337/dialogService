@@ -1,0 +1,14 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation
+                           ="http://www.liquibase.org/xml/ns/dbchangelog
+                           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="update-Table-messages-change-sent_time_on_LocalDateTime" author="DanilSh">
+        <preConditions>
+            <tableExists tableName="messages"/>
+            <columnExists tableName="messages" columnName="sent_time"/>
+        </preConditions>
+        <comment>Change data types of conversation_partner_1 and conversation_partner_2 to LocalDateTime</comment>
+        <modifyDataType tableName="messages" columnName="sent_time" newDataType="DateTime"/>
+    </changeSet>
+</databaseChangeLog>

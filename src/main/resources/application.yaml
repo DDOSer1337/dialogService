@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: dialog-service
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+  dataSource:
+    url: jdbc:postgresql://${DB_SERVER_HOST:localhost}:${DB_SERVER_PORT:5432}/${DB_NAME:postgres}?currentSchema=${DB_SCHEMA:dialog}
+    username: ${DB_SERVER_USER:postgres}
+    password: ${DB_SERVER_PW:123}
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-timeout: 10000
+  jpa:
+    show-sql: true
+  kafka:
+    bootstrap-servers: ${KAFKA_URL:PLAINTEXT://79.174.84.200:9093}
+#       bootstrap-servers: localhost:9092
+    consumer:
+      group-id: dialog-service
+#      client-id: kafka-dialog-service
+      auto-offset-reset: earliest
+    producer:
+      acks: 1
+      batch-size: 16384
+#      client-id: kafka-dialog-service
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://79.174.84.200:8761/eureka}
+
+application:
+  controllers:
+    dialogService:
+      name: defaultURL V1
+      mapping: /api/v1
+      description: default URL
+  author:
+    name: DanilS
+    tg: https://t.me/Pinusteroid
+  feign-client:
+    auth: ${FEIGN_URL_AUTHORIZATION:79.174.84.200:83}
+    account: ${FEIGN_URL_ACCOUNT:79.174.84.200:84}
+    friend: ${FEIGN_URL_FRIEND:79.174.84.200:87}
+  kafka:
+    topics:
+      create-message: topicSignupRequest
+      create-dialog: topicUpdateAccount
+      notify: topicNotifyAboutEvent
+management:
+  endpoints:
+    web:
+      base-path: '/api/v1/actuator'
+      exposure:
+        #        include: '*'
+        include: prometheus,health,info,metric
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      show-details: always
+
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
